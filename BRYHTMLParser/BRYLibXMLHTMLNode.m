@@ -351,54 +351,54 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr)
     return nil;
 }
 
-HTMLNodeType nodeType(xmlNode * _node)
+BRYNodeType nodeType(xmlNode * _node)
 {
     if (_node == NULL || _node->name == NULL)
-        return HTMLUnkownNode;
+        return BRYUnkownNode;
 
     const char * tagName = (const char*)_node->name;
     if (strcmp(tagName, "a") == 0)
-        return HTMLHrefNode;
+        return BRYHrefNode;
     else if (strcmp(tagName, "text") == 0)
-        return HTMLTextNode;
+        return BRYTextNode;
     else if (strcmp(tagName, "code") == 0)
-        return HTMLCodeNode;
+        return BRYCodeNode;
     else if (strcmp(tagName, "span") == 0)
-        return HTMLSpanNode;
+        return BRYSpanNode;
     else if (strcmp(tagName, "p") == 0)
-        return HTMLPNode;
+        return BRYPNode;
     else if (strcmp(tagName, "ul") == 0)
-        return HTMLUlNode;
+        return BRYUlNode;
     else if (strcmp(tagName, "li") == 0)
-        return HTMLLiNode;
+        return BRYLiNode;
     else if (strcmp(tagName, "img") == 0)
-        return HTMLImageNode;
+        return BRYImageNode;
     else if (strcmp(tagName, "ol") == 0)
-        return HTMLOlNode;
+        return BRYOlNode;
     else if (strcmp(tagName, "strong") == 0)
-        return HTMLStrongNode;
+        return BRYStrongNode;
     else if (strcmp(tagName, "pre") == 0)
-        return HTMLPreNode;
+        return BRYPreNode;
     else if (strcmp(tagName, "blockquote") == 0)
-        return HTMLBlockQuoteNode;
+        return BRYBlockQuoteNode;
     else if (strcmp(tagName, "b") == 0)
-        return HTMLBoldNode;
+        return BRYBoldNode;
     else if (strcmp(tagName, "i") == 0)
-        return HTMLItalicNode;
+        return BRYItalicNode;
     else if (strcmp(tagName, "strike") == 0)
-        return HTMLStrikeNode;
+        return BRYStrikeNode;
     else if (strcmp(tagName, "br") == 0)
-        return HTMLBrNode;
+        return BRYBrNode;
     else if (strcmp(tagName, "em") == 0)
-        return HTMLEmNode;
+        return BRYEmNode;
     else if (strcmp(tagName, "del") == 0)
-        return HTMLDelNode;
+        return BRYDelNode;
     else
-        return HTMLUnkownNode;
+        return BRYUnkownNode;
 
 }
 
--(HTMLNodeType)nodetype
+-(BRYNodeType)nodetype
 {
     return nodeType(_node);
 }

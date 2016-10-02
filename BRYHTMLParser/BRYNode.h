@@ -8,33 +8,33 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(unsigned int, HTMLNodeType) {
-    HTMLUnkownNode,
+typedef NS_ENUM(unsigned int, BRYNodeType) {
+    BRYUnkownNode,
     
-    HTMLHrefNode,
-    HTMLTextNode,
-    HTMLSpanNode,
+    BRYHrefNode,
+    BRYTextNode,
+    BRYSpanNode,
     
-    HTMLOlNode,
-    HTMLUlNode,
-    HTMLLiNode,
+    BRYOlNode,
+    BRYUlNode,
+    BRYLiNode,
     
-    HTMLImageNode,
+    BRYImageNode,
     
-    HTMLStrongNode,
-    HTMLEmNode,
-    HTMLDelNode,
+    BRYStrongNode,
+    BRYEmNode,
+    BRYDelNode,
     
-    HTMLBoldNode,
-    HTMLItalicNode,
-    HTMLStrikeNode,
+    BRYBoldNode,
+    BRYItalicNode,
+    BRYStrikeNode,
     
-    HTMLPNode,
-    HTMLBrNode,
-    HTMLBlockQuoteNode,
+    BRYPNode,
+    BRYBrNode,
+    BRYBlockQuoteNode,
     
-    HTMLPreNode,
-    HTMLCodeNode,
+    BRYPreNode,
+    BRYCodeNode,
 };
 
 @protocol BRYNode <NSObject>
@@ -70,7 +70,7 @@ typedef NS_ENUM(unsigned int, HTMLNodeType) {
 @property (nonatomic, readonly, copy) NSArray *children;
 
 /// Returns the node type if know
-@property (nonatomic, readonly) HTMLNodeType nodetype;
+@property (nonatomic, readonly) BRYNodeType nodetype;
 
 /// Gets the attribute value matching tha name
 - (NSString *)getAttributeNamed:(NSString *)name;
