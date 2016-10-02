@@ -27,18 +27,18 @@ NSString *html =
     "</ul>"
     "<span class='spantext'><b>Hello World 1</b></span>"
     "<span class='spantext'><b>Hello World 2</b></span>";
-HTMLParser *parser = [[HTMLParser alloc] initWithString:html error:&error];
+BRYParser *parser = [[BRYParser alloc] initWithString:html error:&error];
 
 if (error) {
     NSLog(@"Error: %@", error);
     return;
 }
 
-HTMLNode *bodyNode = [parser body];
+BRYNode *bodyNode = [parser body];
 
 NSArray *inputNodes = [bodyNode findChildTags:@"input"];
 
-for (HTMLNode *inputNode in inputNodes) {
+for (BRYNode *inputNode in inputNodes) {
     if ([[inputNode getAttributeNamed:@"name"] isEqualToString:@"input2"]) {
         NSLog(@"%@", [inputNode getAttributeNamed:@"value"]); //Answer to first question
     }
@@ -46,7 +46,7 @@ for (HTMLNode *inputNode in inputNodes) {
 
 NSArray *spanNodes = [bodyNode findChildTags:@"span"];
 
-for (HTMLNode *spanNode in spanNodes) {
+for (BRYNode *spanNode in spanNodes) {
     if ([[spanNode getAttributeNamed:@"class"] isEqualToString:@"spantext"]) {
         NSLog(@"%@", [spanNode rawContents]); //Answer to second question
     }

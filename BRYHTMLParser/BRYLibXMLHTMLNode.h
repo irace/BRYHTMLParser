@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HTMLNode.h"
+#import "BRYNode.h"
 
-@interface LibXMLHTMLNode : NSObject <HTMLNode>
+@interface BRYLibXMLHTMLNode : NSObject <BRYNode>
 
 struct _xmlNode;
 

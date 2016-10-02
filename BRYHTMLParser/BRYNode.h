@@ -1,5 +1,5 @@
 //
-//  HTMLNode.h
+//  BRYNode.h
 //  BRYHTMLParser
 //
 //  Created by Bryan Irace on 7/15/15.
@@ -8,39 +8,39 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(unsigned int, HTMLNodeType) {
-    HTMLUnkownNode,
+typedef NS_ENUM(unsigned int, BRYNodeType) {
+    BRYUnkownNode,
     
-    HTMLHrefNode,
-    HTMLTextNode,
-    HTMLSpanNode,
+    BRYHrefNode,
+    BRYTextNode,
+    BRYSpanNode,
     
-    HTMLOlNode,
-    HTMLUlNode,
-    HTMLLiNode,
+    BRYOlNode,
+    BRYUlNode,
+    BRYLiNode,
     
-    HTMLImageNode,
+    BRYImageNode,
     
-    HTMLStrongNode,
-    HTMLEmNode,
-    HTMLDelNode,
+    BRYStrongNode,
+    BRYEmNode,
+    BRYDelNode,
     
-    HTMLBoldNode,
-    HTMLItalicNode,
-    HTMLStrikeNode,
+    BRYBoldNode,
+    BRYItalicNode,
+    BRYStrikeNode,
     
-    HTMLPNode,
-    HTMLBrNode,
-    HTMLBlockQuoteNode,
+    BRYPNode,
+    BRYBrNode,
+    BRYBlockQuoteNode,
     
-    HTMLPreNode,
-    HTMLCodeNode,
+    BRYPreNode,
+    BRYCodeNode,
 };
 
-@protocol HTMLNode <NSObject>
+@protocol BRYNode <NSObject>
 
 /// Returns the first child element
-@property (nonatomic, readonly) id <HTMLNode> firstChild;
+@property (nonatomic, readonly) id <BRYNode> firstChild;
 
 /// Returns the plaintext contents of node
 @property (nonatomic, readonly, copy) NSString *contents;
@@ -52,10 +52,10 @@ typedef NS_ENUM(unsigned int, HTMLNodeType) {
 @property (nonatomic, readonly, copy) NSString *rawContents;
 
 /// Returns next sibling in tree
-@property (nonatomic, readonly) id <HTMLNode> nextSibling;
+@property (nonatomic, readonly) id <BRYNode> nextSibling;
 
 /// Returns previous sibling in tree
-@property (nonatomic, readonly) id <HTMLNode> previousSibling;
+@property (nonatomic, readonly) id <BRYNode> previousSibling;
 
 /// Returns the class name
 @property (nonatomic, readonly, copy) NSString *className;
@@ -64,13 +64,13 @@ typedef NS_ENUM(unsigned int, HTMLNodeType) {
 @property (nonatomic, readonly, copy) NSString *tagName;
 
 /// Returns the parent
-@property (nonatomic, readonly) id <HTMLNode> parent;
+@property (nonatomic, readonly) id <BRYNode> parent;
 
 /// Returns the first level of children
 @property (nonatomic, readonly, copy) NSArray *children;
 
 /// Returns the node type if know
-@property (nonatomic, readonly) HTMLNodeType nodetype;
+@property (nonatomic, readonly) BRYNodeType nodetype;
 
 /// Gets the attribute value matching tha name
 - (NSString *)getAttributeNamed:(NSString *)name;
@@ -79,16 +79,16 @@ typedef NS_ENUM(unsigned int, HTMLNodeType) {
 - (NSArray *)findChildTags:(NSString *)tagName;
 
 /// Looks for a tag name e.g. "h3"
-- (id <HTMLNode>)findChildTag:(NSString *)tagName;
+- (id <BRYNode>)findChildTag:(NSString *)tagName;
 
 /// Returns a single child of class
-- (id <HTMLNode>)findChildOfClass:(NSString *)className;
+- (id <BRYNode>)findChildOfClass:(NSString *)className;
 
 /// Returns all children of class
 - (NSArray *)findChildrenOfClass:(NSString *)className;
 
 /// Finds a single child with a matching attribute. Set `allowPartial` to match partial matches, e.g. <img src="http://www.google.com> [findChildWithAttribute:@"src" matchingName:"google.com" allowPartial:TRUE]
-- (id <HTMLNode>)findChildWithAttribute:(NSString *)attribute matchingName:(NSString *)className allowPartial:(BOOL)partial;
+- (id <BRYNode>)findChildWithAttribute:(NSString *)attribute matchingName:(NSString *)className allowPartial:(BOOL)partial;
 
 /// Finds all children with a matching attribute
 - (NSArray *)findChildrenWithAttribute:(NSString *)attribute matchingName:(NSString *)className allowPartial:(BOOL)partial;
