@@ -1,5 +1,5 @@
 //
-//  HTMLParser.h
+//  BRYParser.h
 //  StackOverflow
 //
 //  Created by Ben Reeves on 09/03/2010.
@@ -7,21 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HTMLNode.h"
+#import "BRYNode.h"
 
-@interface HTMLParser : NSObject
+@interface BRYParser : NSObject
 
 /// Returns the doc tag
-@property (nonatomic, readonly) id <HTMLNode> doc;
+@property (nonatomic, readonly) id <BRYNode> doc;
 
 /// Returns the body tag
-@property (nonatomic, readonly) id <HTMLNode> body;
+@property (nonatomic, readonly) id <BRYNode> body;
 
 /// Returns the html tag
-@property (nonatomic, readonly) id <HTMLNode> html;
+@property (nonatomic, readonly) id <BRYNode> html;
 
 /// Returns the head tag
-@property (nonatomic, readonly) id <HTMLNode> head;
+@property (nonatomic, readonly) id <BRYNode> head;
 
 - (instancetype)initWithContentsOfURL:(NSURL *)url error:(NSError **)error;
 

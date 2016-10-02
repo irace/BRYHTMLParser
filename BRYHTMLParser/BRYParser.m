@@ -6,23 +6,23 @@
 //  Copyright 2010 Ben Reeves. All rights reserved.
 //
 
-#import "LibXMLHTMLNode.h"
-#import "HTMLParser.h"
+#import "BRYLibXMLHTMLNode.h"
+#import "BRYParser.h"
 #import <libxml/HTMLparser.h>
 
-@implementation HTMLParser {
+@implementation BRYParser {
     htmlDocPtr _doc;
 }
 
--(LibXMLHTMLNode*)doc
+-(BRYLibXMLHTMLNode*)doc
 {
     if (_doc == NULL)
         return NULL;
 
-    return [[LibXMLHTMLNode alloc] initWithXMLNode:(xmlNode*)_doc];
+    return [[BRYLibXMLHTMLNode alloc] initWithXMLNode:(xmlNode*)_doc];
 }
 
--(LibXMLHTMLNode*)html
+-(BRYLibXMLHTMLNode*)html
 {
     if (_doc == NULL)
         return NULL;
@@ -30,7 +30,7 @@
     return [[self doc] findChildTag:@"html"];
 }
 
--(LibXMLHTMLNode*)head
+-(BRYLibXMLHTMLNode*)head
 {
     if (_doc == NULL)
         return NULL;
@@ -38,7 +38,7 @@
     return [[self doc] findChildTag:@"head"];
 }
 
--(LibXMLHTMLNode*)body
+-(BRYLibXMLHTMLNode*)body
 {
     if (_doc == NULL)
         return NULL;

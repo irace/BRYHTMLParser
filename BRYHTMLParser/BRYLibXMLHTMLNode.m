@@ -6,28 +6,28 @@
 //  Copyright 2010 Ben Reeves. All rights reserved.
 //
 
-#import "LibXMLHTMLNode.h"
+#import "BRYLibXMLHTMLNode.h"
 #import <libxml/HTMLtree.h>
 
-@interface LibXMLHTMLNode ()
+@interface BRYLibXMLHTMLNode ()
 
 @property (nonatomic) xmlNode * node;
 
 @end
 
-@implementation LibXMLHTMLNode
+@implementation BRYLibXMLHTMLNode
 
--(LibXMLHTMLNode*)parent
+-(BRYLibXMLHTMLNode*)parent
 {
-    return [[LibXMLHTMLNode alloc] initWithXMLNode:_node->parent];
+    return [[BRYLibXMLHTMLNode alloc] initWithXMLNode:_node->parent];
 }
 
--(LibXMLHTMLNode*)nextSibling {
-    return [[LibXMLHTMLNode alloc] initWithXMLNode:_node->next];
+-(BRYLibXMLHTMLNode*)nextSibling {
+    return [[BRYLibXMLHTMLNode alloc] initWithXMLNode:_node->next];
 }
 
--(LibXMLHTMLNode*)previousSibling {
-    return [[LibXMLHTMLNode alloc] initWithXMLNode:_node->prev];
+-(BRYLibXMLHTMLNode*)previousSibling {
+    return [[BRYLibXMLHTMLNode alloc] initWithXMLNode:_node->prev];
 }
 
 void setAttributeNamed(xmlNode * node, const char * nameStr, const char * value) {
@@ -107,9 +107,9 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr)
 }
 
 
--(LibXMLHTMLNode*)firstChild
+-(BRYLibXMLHTMLNode*)firstChild
 {
-    return [[LibXMLHTMLNode alloc] initWithXMLNode:_node->children];
+    return [[BRYLibXMLHTMLNode alloc] initWithXMLNode:_node->children];
 }
 
 
@@ -138,7 +138,7 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr)
                     if (match)
                     {
                         //Found node
-                        LibXMLHTMLNode * nNode = [[LibXMLHTMLNode alloc] initWithXMLNode:cur_node];
+                        BRYLibXMLHTMLNode * nNode = [[BRYLibXMLHTMLNode alloc] initWithXMLNode:cur_node];
                         [array addObject:nNode];
                         break;
                     }
@@ -164,7 +164,7 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr)
     {
         if (cur_node->name && strcmp((char*)cur_node->name, tagNameStr) == 0)
         {
-            LibXMLHTMLNode * node = [[LibXMLHTMLNode alloc] initWithXMLNode:cur_node];
+            BRYLibXMLHTMLNode * node = [[BRYLibXMLHTMLNode alloc] initWithXMLNode:cur_node];
             [array addObject:node];
 
         }
@@ -183,7 +183,7 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr)
     return array;
 }
 
--(LibXMLHTMLNode*)findChildTag:(NSString*)tagName inXMLNode:(xmlNode *)node
+-(BRYLibXMLHTMLNode*)findChildTag:(NSString*)tagName inXMLNode:(xmlNode *)node
 {
     xmlNode *cur_node = NULL;
     const char * tagNameStr =  [tagName UTF8String];
@@ -192,10 +192,10 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr)
     {
         if (cur_node && cur_node->name && strcmp((char*)cur_node->name, tagNameStr) == 0)
         {
-            return [[LibXMLHTMLNode alloc] initWithXMLNode:cur_node];
+            return [[BRYLibXMLHTMLNode alloc] initWithXMLNode:cur_node];
         }
 
-        LibXMLHTMLNode * cNode = [self findChildTag:tagName inXMLNode:cur_node->children];
+        BRYLibXMLHTMLNode * cNode = [self findChildTag:tagName inXMLNode:cur_node->children];
         if (cNode != NULL)
         {
             return cNode;
@@ -205,7 +205,7 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr)
     return NULL;
 }
 
--(LibXMLHTMLNode*)findChildTag:(NSString*)tagName
+-(BRYLibXMLHTMLNode*)findChildTag:(NSString*)tagName
 {
     return [self findChildTag:tagName inXMLNode:_node->children];
 }
@@ -218,7 +218,7 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr)
 
     for (cur_node = _node->children; cur_node; cur_node = cur_node->next)
     {
-        LibXMLHTMLNode * node = [[LibXMLHTMLNode alloc] initWithXMLNode:cur_node];
+        BRYLibXMLHTMLNode * node = [[BRYLibXMLHTMLNode alloc] initWithXMLNode:cur_node];
         [array addObject:node];
     }
 
@@ -240,7 +240,7 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr)
     return string;
 }*/
 
--(LibXMLHTMLNode*)findChildWithAttribute:(const char*)attribute matchingName:(const char*)name inXMLNode:(xmlNode *)node allowPartial:(BOOL)partial
+-(BRYLibXMLHTMLNode*)findChildWithAttribute:(const char*)attribute matchingName:(const char*)name inXMLNode:(xmlNode *)node allowPartial:(BOOL)partial
 {
     xmlNode *cur_node = NULL;
     const char * classNameStr = name;
@@ -266,14 +266,14 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr)
 
                     if (match)
                     {
-                        return [[LibXMLHTMLNode alloc] initWithXMLNode:cur_node];
+                        return [[BRYLibXMLHTMLNode alloc] initWithXMLNode:cur_node];
                     }
                 }
                 break;
             }
         }
 
-        LibXMLHTMLNode * cNode = [self findChildWithAttribute:attribute matchingName:name inXMLNode:cur_node->children allowPartial:partial];
+        BRYLibXMLHTMLNode * cNode = [self findChildWithAttribute:attribute matchingName:name inXMLNode:cur_node->children allowPartial:partial];
         if (cNode != NULL)
         {
             return cNode;
@@ -283,14 +283,14 @@ NSString * getAttributeNamed(xmlNode * node, const char * nameStr)
     return NULL;
 }
 
--(LibXMLHTMLNode*)findChildWithAttribute:(NSString*)attribute matchingName:(NSString*)className allowPartial:(BOOL)partial
+-(BRYLibXMLHTMLNode*)findChildWithAttribute:(NSString*)attribute matchingName:(NSString*)className allowPartial:(BOOL)partial
 {
     return [self findChildWithAttribute:[attribute UTF8String] matchingName:[className UTF8String] inXMLNode:_node->children allowPartial:partial];
 }
 
--(LibXMLHTMLNode*)findChildOfClass:(NSString*)className
+-(BRYLibXMLHTMLNode*)findChildOfClass:(NSString*)className
 {
-    LibXMLHTMLNode * node = [self findChildWithAttribute:"class" matchingName:[className UTF8String]  inXMLNode:_node->children allowPartial:NO];
+    BRYLibXMLHTMLNode * node = [self findChildWithAttribute:"class" matchingName:[className UTF8String]  inXMLNode:_node->children allowPartial:NO];
     return node;
 }
 
