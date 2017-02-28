@@ -12,21 +12,21 @@
 @interface HTMLParser : NSObject
 
 /// Returns the doc tag
-@property (nonatomic, readonly) id <HTMLNode> doc;
+@property (nonatomic, readonly, nullable) id <HTMLNode> doc;
 
 /// Returns the body tag
-@property (nonatomic, readonly) id <HTMLNode> body;
+@property (nonatomic, readonly, nullable) id <HTMLNode> body;
 
 /// Returns the html tag
-@property (nonatomic, readonly) id <HTMLNode> html;
+@property (nonatomic, readonly, nullable) id <HTMLNode> html;
 
 /// Returns the head tag
-@property (nonatomic, readonly) id <HTMLNode> head;
+@property (nonatomic, readonly, nullable) id <HTMLNode> head;
 
-- (instancetype)initWithContentsOfURL:(NSURL *)url error:(NSError **)error;
+- (nullable instancetype)initWithContentsOfURL:(nonnull NSURL *)url error:(NSError * _Nullable * _Nullable)error;
 
-- (instancetype)initWithData:(NSData *)data error:(NSError **)error NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithData:(nonnull NSData *)data error:(NSError * _Nullable * _Nullable)error NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithString:(NSString *)string error:(NSError **)error NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithString:(nonnull NSString *)string error:(NSError * _Nullable * _Nullable)error NS_DESIGNATED_INITIALIZER;
 
 @end
