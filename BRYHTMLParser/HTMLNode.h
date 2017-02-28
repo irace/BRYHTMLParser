@@ -40,57 +40,57 @@ typedef NS_ENUM(unsigned int, HTMLNodeType) {
 @protocol HTMLNode <NSObject>
 
 /// Returns the first child element
-@property (nonatomic, readonly) id <HTMLNode> firstChild;
+@property (nonatomic, readonly, nullable) id <HTMLNode> firstChild;
 
 /// Returns the plaintext contents of node
-@property (nonatomic, readonly, copy) NSString *contents;
+@property (nonatomic, readonly, copy, nullable) NSString *contents;
 
 /// Returns the plaintext contents of this node + all children
-@property (nonatomic, readonly, copy) NSString *allContents;
+@property (nonatomic, readonly, copy, nullable) NSString *allContents;
 
 /// Returns the html contents of the node
-@property (nonatomic, readonly, copy) NSString *rawContents;
+@property (nonatomic, readonly, copy, nullable) NSString *rawContents;
 
 /// Returns next sibling in tree
-@property (nonatomic, readonly) id <HTMLNode> nextSibling;
+@property (nonatomic, readonly, nullable) id <HTMLNode> nextSibling;
 
 /// Returns previous sibling in tree
-@property (nonatomic, readonly) id <HTMLNode> previousSibling;
+@property (nonatomic, readonly, nullable) id <HTMLNode> previousSibling;
 
 /// Returns the class name
-@property (nonatomic, readonly, copy) NSString *className;
+@property (nonatomic, readonly, copy, nullable) NSString *className;
 
 /// Returns the tag name
-@property (nonatomic, readonly, copy) NSString *tagName;
+@property (nonatomic, readonly, copy, nullable) NSString *tagName;
 
 /// Returns the parent
-@property (nonatomic, readonly) id <HTMLNode> parent;
+@property (nonatomic, readonly, nullable) id <HTMLNode> parent;
 
 /// Returns the first level of children
-@property (nonatomic, readonly, copy) NSArray *children;
+@property (nonatomic, readonly, copy, nonnull) NSArray<id<HTMLNode>> *children;
 
 /// Returns the node type if know
 @property (nonatomic, readonly) HTMLNodeType nodetype;
 
 /// Gets the attribute value matching tha name
-- (NSString *)getAttributeNamed:(NSString *)name;
+- (nullable NSString *)getAttributeNamed:(nonnull NSString *)name;
 
 /// Find children with the specified tag name
-- (NSArray *)findChildTags:(NSString *)tagName;
+- (nonnull NSArray<id<HTMLNode>> *)findChildTags:(nonnull NSString *)tagName;
 
 /// Looks for a tag name e.g. "h3"
-- (id <HTMLNode>)findChildTag:(NSString *)tagName;
+- (nullable id <HTMLNode>)findChildTag:(nonnull NSString *)tagName;
 
 /// Returns a single child of class
-- (id <HTMLNode>)findChildOfClass:(NSString *)className;
+- (nullable id <HTMLNode>)findChildOfClass:(nonnull NSString *)className;
 
 /// Returns all children of class
-- (NSArray *)findChildrenOfClass:(NSString *)className;
+- (nonnull NSArray<id<HTMLNode>> *)findChildrenOfClass:(nonnull NSString *)className;
 
 /// Finds a single child with a matching attribute. Set `allowPartial` to match partial matches, e.g. <img src="http://www.google.com> [findChildWithAttribute:@"src" matchingName:"google.com" allowPartial:TRUE]
-- (id <HTMLNode>)findChildWithAttribute:(NSString *)attribute matchingName:(NSString *)className allowPartial:(BOOL)partial;
+- (nullable id <HTMLNode>)findChildWithAttribute:(nonnull NSString *)attribute matchingName:(nonnull NSString *)className allowPartial:(BOOL)partial;
 
 /// Finds all children with a matching attribute
-- (NSArray *)findChildrenWithAttribute:(NSString *)attribute matchingName:(NSString *)className allowPartial:(BOOL)partial;
+- (nonnull NSArray<id<HTMLNode>> *)findChildrenWithAttribute:(nonnull NSString *)attribute matchingName:(nonnull NSString *)className allowPartial:(BOOL)partial;
 
 @end

@@ -14,6 +14,6 @@
 struct _xmlNode;
 
 /// Init with a lib xml node (shouldn't need to be called manually). Use [parser doc] to get the root Node
-- (instancetype)initWithXMLNode:(struct _xmlNode *)xmlNode NS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithXMLNode:(struct _xmlNode * _Nullable)xmlNode NS_DESIGNATED_INITIALIZER;
 
 @end
